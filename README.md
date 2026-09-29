@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# LL Trading OÜ — Website Redesign
 
-## Getting Started
+A modern, editorial-style website redesign for **LL Trading OÜ**, combining UI/UX design with frontend development.
 
-First, run the development server:
+## About
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+LL Trading OÜ is an Estonian accounting company established in 1997, providing accounting services to businesses across Estonia.
+
+This project is a redesign of the company's existing website, with a focus on creating a more modern, clear and distinctive digital presence while keeping the information practical and accessible for potential clients.
+
+## Goals
+
+- Create a modern and professional visual identity for the website
+- Present the company's services and pricing clearly
+- Introduce the people behind LL Trading
+- Make it easy for potential clients to get in touch
+- Create a responsive experience across desktop and mobile
+- Use the project as a real-world UI/UX and frontend development case study
+
+## Design
+
+The visual direction is inspired by editorial design, combining:
+
+- Large expressive typography
+- Generous whitespace
+- Asymmetrical layouts
+- Restrained use of red as an accent colour
+- Subtle motion and interaction
+- Clear and simple navigation
+
+The website is designed in **Figma** and developed in parallel, allowing the design to evolve during implementation.
+
+### Figma
+
+[View the LL Trading website design in Figma](https://www.figma.com/design/xSnUxMFrWXjLDU5s1elUa4/Personal-portfolio?node-id=45-67&t=3ps8ffHkR8H2UeVo-1)
+
+## Tech Stack
+
+- Next.js
+- TypeScript
+- React
+- Tailwind CSS
+- Framer Motion
+- Figma
+
+## Planned Sections
+
+- Hero
+- Company / Experience
+- Services
+- Team
+- Pricing
+- Contact
+- Footer
+
+## Status
+
+**In development**
+
+The initial project setup is complete. The next phase is implementing the visual design and responsive layout based on the Figma concept.
+
+## Project Structure
+
+```text
+src/
+├── app/
+├── components/
+└── data/
+
+public/
+└── images/
 ```
+## Author 
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Designed and developed by **Maria Port**.
