@@ -8,10 +8,10 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-const orpheus = localFont({
-  src: "../../public/fonts/OrpheusPro-Bold.woff2",
-  variable: "--font-orpheus",
-  weight: "700",
+const clearface = localFont({
+  src: "../../public/fonts/Clearface.otf",
+  variable: "--font-clearface",
+  weight: "400",
   style: "normal",
 });
 
@@ -26,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="et" className={`${inter.variable} ${orpheus.variable}`}>
+    <html lang="et" className={`${inter.variable} ${clearface.variable}`}>
       <body className="min-h-screen">{children}</body>
     </html>
   );
