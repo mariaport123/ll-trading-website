@@ -2,60 +2,70 @@ export default function Pricing() {
   return (
     <section
       id="pricing"
-      className="relative overflow-hidden border-t border-[#111111]/15 px-6 py-24 md:px-10 md:py-32"
+      className="relative overflow-hidden px-6 py-24 sm:px-8 md:px-12 md:py-32 lg:px-16"
     >
-      <div className="mb-16 flex items-center justify-between font-inter text-[10px] uppercase tracking-[0.1em] md:text-xs">
+      <div className="mb-16 flex items-center justify-start gap-8 font-inter text-[10px] uppercase tracking-[0.1em] md:mb-20 md:text-xs">
         <span>05 / 06</span>
         <span>Hinnakiri</span>
       </div>
 
-      <div className="grid gap-16 md:grid-cols-[1fr_1fr] md:gap-24">
-        <div>
-          <h2 className="font-clearface text-[clamp(3.5rem,6vw,6.5rem)] font-normal leading-[0.88] tracking-[-0.02em]">
-            ÜKS HIND
-            <br />
-            EI SOBI
+      <div className="relative grid gap-12 md:grid-cols-[0.95fr_1.05fr] md:gap-16 lg:gap-24">
+        {/* Left side */}
+        <div className="relative z-10 flex flex-col items-start">
+          <h2 className="whitespace-nowrap font-clearface text-[clamp(3rem,5.2vw,5.5rem)] font-normal leading-[1.12] tracking-[-0.025em]">
+            ÜKS HIND EI SOBI
             <br />
             KÕIGILE.
           </h2>
 
-          <a
-            href="#contact"
-            className="mt-10 inline-block font-inter text-[10px] uppercase tracking-[0.1em] underline underline-offset-4"
-          >
-            Vaata hinnakirja →
-          </a>
-        </div>
-
-        <div className="border-l border-[#B8B3AA] pl-8 md:pl-12">
-          <p className="max-w-[400px] font-inter text-sm leading-[1.6] text-[#5F5C57] md:text-base">
+          <p className="mt-8 max-w-[390px] font-inter text-sm leading-[1.6] text-[#5F5C57] md:mt-10 md:text-base">
             Raamatupidamisteenuse hind kujuneb vastavalt algdokumentide
             mahule ja tellitud lisateenustele.
           </p>
 
-          <div className="mt-12">
-            <p className="mb-5 font-inter text-[10px] uppercase tracking-[0.1em] text-[#5F5C57]">
+          <a
+            href="/hinnakiri"
+            className="group mt-10 inline-flex items-center gap-2 font-inter text-[10px] uppercase tracking-[0.1em] text-[#111111] transition-colors duration-300 hover:text-[#D32F2F] md:mt-16"
+          >
+            <span>Vaata hinnakirja</span>
+            <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
+              →
+            </span>
+          </a>
+        </div>
+
+        {/* Right side */}
+        <div className="relative flex min-h-[340px] flex-col justify-center md:min-h-[400px] md:pl-8 lg:pl-12">
+          <div className="relative z-10">
+            <p className="font-inter text-sm uppercase tracking-[0.04em] text-[#5F5C57]">
               Näide
             </p>
 
-            <div className="flex items-end gap-4">
-              <span className="font-clearface text-[clamp(3.5rem,5vw,5.5rem)] leading-none">
+            <p className="mt-10 font-inter text-base md:mt-12 md:text-xl">
+              0–25 dokumenti
+            </p>
+
+            <div className="mt-5 flex flex-wrap items-baseline gap-x-4 gap-y-1">
+              <span className="font-clearface text-[clamp(4.5rem,8vw,7.5rem)] leading-[0.9] tracking-[-0.04em]">
                 32,00 €
               </span>
 
-              <span className="pb-2 font-inter text-xs text-[#5F5C57]">
+              <span className="font-inter text-sm text-[#111111] md:text-base">
                 / kuu
               </span>
             </div>
 
-            <p className="mt-6 max-w-[360px] font-inter text-[10px] leading-[1.5] text-[#5F5C57]">
-              0–25 dokumenti
-              <br />
-              Hindadele lisandub käibemaks 24%.
-              <br />
-              Hinnakiri ei ole lõplik. Küsi kindlasti pakkumist.
-            </p>
+            <div className="mt-10 space-y-2 font-inter text-sm leading-[1.5] text-[#111111]/80">
+              <p>Hindadele lisandub käibemaks 24%.</p>
+              <p>Hinnakiri ei ole lõplik. Küsi kindlasti pakkumist.</p>
+            </div>
           </div>
+
+          {/* Decorative red circle */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute left-[70%] top-1/2 aspect-square w-[min(60vw,420px)] -translate-y-1/2 rounded-full border border-[#D32F2F] md:left-[75%] md:w-[min(35vw,420px)]"
+          />
         </div>
       </div>
     </section>

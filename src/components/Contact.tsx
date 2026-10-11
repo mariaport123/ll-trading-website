@@ -6,6 +6,7 @@ const contacts = [
   },
   {
     name: "Ave Kartau",
+    phone: "+372 51 86 998",
     email: "ave@lltrading.ee",
   },
   {
@@ -19,16 +20,16 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="border-t border-[#111111]/15 px-6 py-24 md:px-10 md:py-32"
+      className="px-6 py-24 sm:px-8 md:px-12 md:py-32 lg:px-16"
     >
-      <div className="mb-16 flex items-center justify-between font-inter text-[10px] uppercase tracking-[0.1em] md:text-xs">
+      <div className="mb-16 flex items-center justify-start gap-8 font-inter text-[10px] uppercase tracking-[0.1em] md:mb-20 md:text-xs">
         <span>06 / 06</span>
         <span>Kontakt</span>
       </div>
 
       <div className="grid gap-16 md:grid-cols-[1.2fr_0.8fr] md:gap-24">
         <div>
-          <h2 className="font-clearface text-[clamp(3.5rem,6vw,6.5rem)] font-normal leading-[0.88] tracking-[-0.02em]">
+          <h2 className="font-clearface text-[clamp(3rem,5.2vw,5.5rem)] font-normal leading-[1.05] tracking-[-0.025em]">
             RÄÄGIME
             <br />
             TEIE
@@ -47,25 +48,28 @@ export default function Contact() {
 
             <a
               href="mailto:irene@lltrading.ee"
-              className="mt-7 inline-block font-inter text-[10px] uppercase tracking-[0.1em] underline underline-offset-4"
+              className="group mt-7 inline-flex items-center gap-2 font-inter text-xs font-semibold uppercase tracking-[0.04em] transition-colors hover:text-[#D32F2F]"
             >
-              Võta ühendust →
+              Võta ühendust
+              <span className="text-[#D32F2F] transition-transform duration-300 group-hover:translate-x-1">
+                →
+              </span>
             </a>
           </div>
         </div>
 
-        <div className="border-l border-[#B8B3AA] pl-8 md:pl-12">
-          <div className="space-y-8">
+        <div className="flex flex-col justify-center">
+          <div className="space-y-10">
             {contacts.map((contact) => (
               <div key={contact.name}>
-                <p className="font-clearface text-base uppercase">
+                <p className="font-clearface text-lg uppercase md:text-xl">
                   {contact.name}
                 </p>
 
                 {contact.phone && (
                   <a
                     href={`tel:${contact.phone.replace(/\s/g, "")}`}
-                    className="mt-1 block font-inter text-xs text-[#5F5C57]"
+                    className="mt-2 block w-fit font-inter text-sm text-[#5F5C57] transition-colors hover:text-[#D32F2F]"
                   >
                     {contact.phone}
                   </a>
@@ -73,7 +77,7 @@ export default function Contact() {
 
                 <a
                   href={`mailto:${contact.email}`}
-                  className="mt-1 block font-inter text-xs text-[#5F5C57]"
+                  className="mt-1 block w-fit font-inter text-sm text-[#5F5C57] transition-colors hover:text-[#D32F2F]"
                 >
                   {contact.email}
                 </a>

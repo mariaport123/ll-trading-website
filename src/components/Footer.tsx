@@ -1,42 +1,53 @@
 export default function Footer() {
   return (
-    <footer className="border-t border-[#111111]/15 px-6 py-8 md:px-10">
-      <div className="grid gap-8 font-inter text-[9px] uppercase tracking-[0.08em] md:grid-cols-3 md:items-end md:text-[10px]">
+    <footer className="border-t border-[#111111]/15 px-6 py-8 md:px-10 md:py-10">
+      <div className="grid gap-8 font-inter text-[9px] uppercase tracking-[0.08em] md:grid-cols-[1fr_auto_1fr] md:items-end md:text-[10px]">
+        {/* Company */}
         <div>
-          <p>LL Trading OÜ</p>
+          <a
+            href="/"
+            className="font-clearface text-base tracking-[0.04em] transition-opacity hover:opacity-60"
+          >
+            <span className="text-[#D32F2F]">LL</span> TRADING OÜ
+          </a>
 
           <p className="mt-2 text-[#6D6A65]">
             Raamatupidamisteenused alates 1997
           </p>
         </div>
 
-        <nav className="flex flex-wrap gap-x-5 gap-y-2 md:justify-center">
-          <a href="#services" className="hover:opacity-60">
+        {/* Navigation */}
+        <nav
+          aria-label="Jaluse navigatsioon"
+          className="flex flex-wrap gap-x-5 gap-y-3 md:-translate-y-3 md:justify-center"
+        >
+          <a href="/#services" className="transition-colors hover:text-[#D32F2F]">
             Teenused
           </a>
 
-          <a href="#news" className="hover:opacity-60">
+          <a href="/#news" className="transition-colors hover:text-[#D32F2F]">
             Uudised
           </a>
 
-          <a href="#team" className="hover:opacity-60">
+          <a href="/#team" className="transition-colors hover:text-[#D32F2F]">
             Meist
           </a>
 
-          <a href="#pricing" className="hover:opacity-60">
+          <a href="/hinnakiri" className="transition-colors hover:text-[#D32F2F]">
             Hinnakiri
           </a>
 
-          <a href="#contact" className="hover:opacity-60">
+          <a href="/#contact" className="transition-colors hover:text-[#D32F2F]">
             Kontakt
           </a>
         </nav>
 
+        {/* Location and copyright */}
         <div className="md:text-right">
           <p>Pärnu, Eesti</p>
 
           <p className="mt-2 text-[#6D6A65]">
-            © 2026 LL Trading OÜ
+            © {new Date().getFullYear()} LL Trading OÜ
           </p>
         </div>
       </div>

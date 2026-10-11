@@ -4,9 +4,9 @@ export default function News() {
   return (
     <section
       id="news"
-      className="border-t border-[#111111]/15 px-6 py-24 md:px-10 md:py-32"
+      className="px-6 py-24 sm:px-8 md:px-12 md:py-32 lg:px-16"
     >
-      <div className="mb-16 flex items-center justify-between font-inter text-[10px] uppercase tracking-[0.1em] md:text-xs">
+      <div className="mb-16 flex items-center gap-6 font-inter text-[10px] uppercase tracking-[0.1em] md:text-xs">
         <span>03 / 06</span>
         <span>Uudised</span>
       </div>
@@ -37,11 +37,18 @@ export default function News() {
                 </span>
 
                 <div>
-                  <p className="mb-3 font-inter text-[10px] uppercase tracking-[0.1em] text-[#6D6A65]">
-                    {item.date}
-                  </p>
+                  <div className="mb-3 flex flex-wrap items-center gap-x-3 gap-y-1 font-inter text-[10px] uppercase tracking-[0.1em] text-[#6D6A65]">
+                    <span>{item.date}</span>
 
-                  <h3 className="font-clearface text-[clamp(1.8rem,3vw,3.2rem)] leading-[0.95]">
+                    {item.effectiveDate && (
+                      <>
+                        <span className="text-[#D32F2F]">/</span>
+                        <span>{item.effectiveDate}</span>
+                      </>
+                    )}
+                  </div>
+
+                  <h3 className="font-inter text-[clamp(1.8rem,3vw,3.2rem)] leading-[0.95]">
                     {item.title}
                   </h3>
 
@@ -50,9 +57,17 @@ export default function News() {
                   </p>
                 </div>
 
-                <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[#B8B3AA] font-inter text-sm">
-                  →
-                </span>
+                {item.url && (
+                  <a
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Loe lähemalt: ${item.title}`}
+                    className="flex h-10 w-10 items-center justify-center rounded-full border border-[#B8B3AA] font-inter text-sm transition-colors hover:border-[#D32F2F] hover:text-[#D32F2F]"
+                  >
+                    →
+                  </a>
+                )}
               </div>
             </article>
           ))}

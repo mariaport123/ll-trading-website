@@ -9,32 +9,32 @@ const menuItems = [
     {
         number: "01",
         label: "Teenused",
-        href: "#services",
-        position: "ml-[18%]",
+        href: "/#services",
+        position: "...",
     },
     {
         number: "02",
         label: "Uudised",
-        href: "#news",
-        position: "ml-[2%]",
+        href: "/#news",
+        position: "...",
     },
     {
         number: "03",
         label: "Meist",
-        href: "#team",
-        position: "ml-[20%]",
+        href: "/#experience",
+        position: "...",
     },
     {
         number: "04",
-        label: "Hinnakiri",
-        href: "#pricing",
-        position: "ml-[4%]",
+        label: "Kontakt",
+        href: "/#contact",
+        position: "...",
     },
     {
         number: "05",
-        label: "Kontakt",
-        href: "#contact",
-        position: "ml-[18%]",
+        label: "Hinnakiri",
+        href: "/hinnakiri",
+        position: "...",
     },
 ];
 
@@ -42,27 +42,22 @@ export default function MenuOverlay({
     open,
     onClose,
 }: MenuOverlayProps) {
+    if (!open) {
+        return null;
+    }
+
     return (
-        <div
-            className={`fixed inset-0 z-[100] ${open
-                    ? "pointer-events-auto"
-                    : "pointer-events-none"
-                }`}
-        >
+        <div className="fixed inset-0 z-[100] h-dvh w-screen">
             {/* Background */}
             <button
                 type="button"
                 aria-label="Sulge menüü"
                 onClick={onClose}
-                className={`absolute inset-0 bg-[#111111]/20 backdrop-blur-[4px] transition-opacity duration-500 ${open ? "opacity-100" : "opacity-0"
-                    }`}
+                className="absolute inset-0 bg-[#111111]/20 backdrop-blur-[4px] transition-opacity duration-500"
             />
 
             {/* Menu panel */}
-            <div
-                className={`absolute right-0 top-0 flex h-full w-full flex-col overflow-hidden bg-[#1C1C1C] text-[#F8F5EF] transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] md:w-[43%] lg:w-[40%] ${open ? "translate-x-0" : "translate-x-full"
-                    }`}
-            >
+            <div className="absolute right-0 top-0 flex h-dvh w-full flex-col overflow-hidden bg-[#1C1C1C] text-[#F8F5EF] md:w-[43%] lg:w-[40%]">
                 {/* Decorative circle */}
                 <div className="pointer-events-none absolute -right-36 top-14 h-[340px] w-[340px] rounded-full border border-[#D32F2F]/35" />
 

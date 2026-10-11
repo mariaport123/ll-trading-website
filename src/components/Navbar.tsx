@@ -30,32 +30,34 @@ export default function Navbar() {
 
     return (
         <>
-            {/* Fixed navigation */}
-            <nav className="fixed left-0 top-0 z-50 flex h-[76px] w-full items-center justify-between px-6 md:h-[92px] md:px-10">
-                {/* Contact */}
+            {/* Fixed header pinned strictly to viewport bounds */}
+
+            <nav className="fixed inset-x-0 top-0 z-50 flex h-[76px] w-full max-w-full items-center justify-between px-6 sm:px-8 md:h-[92px] md:px-12 lg:px-16">
+
+                {/* Contact CTA link */}
                 <a
-                    href="#contact"
-                    className="font-inter text-[10px] uppercase tracking-[0.08em] transition-opacity hover:opacity-50 md:text-[13px]"
+                    href="/kontakt"
+                    className="font-clearface text-[16px] uppercase tracking-[0.08em] transition-opacity hover:opacity-50 md:text-[16px]"
                 >
-                    Võta ühendust{" "}
+                    VÕTA ÜHENDUST{" "}
                     <span className="text-[#D32F2F]">→</span>
                 </a>
 
-                {/* Logo */}
+                {/* Centered logo */}
                 <a
                     href="/"
-                    className="absolute left-1/2 -translate-x-1/2 whitespace-nowrap font-clearface text-[21px] font-medium tracking-[0.01em] md:text-[25px]"
+                    className="absolute left-1/2 -translate-x-1/2 whitespace-nowrap font-clearface text-[19px] font-medium tracking-[0.01em] sm:text-[21px] md:text-[25px]"
                 >
                     <span className="text-[#D32F2F]">LL</span> TRADING
                 </a>
 
-                {/* Hamburger */}
+                {/* Hamburger menu trigger button */}
                 <button
                     type="button"
                     onClick={() => setMenuOpen(true)}
                     aria-label="Ava menüü"
                     aria-expanded={menuOpen}
-                    className="ml-auto flex h-8 w-8 items-center justify-center transition-opacity hover:opacity-50"
+                    className="flex h-8 w-8 items-center justify-center transition-opacity hover:opacity-50"
                 >
                     <span className="flex w-6 flex-col gap-[5px]">
                         <span className="h-px w-full bg-[#111111]" />
@@ -65,7 +67,7 @@ export default function Navbar() {
                 </button>
             </nav>
 
-            {/* Spacer so the fixed navbar does not pull the page upward */}
+            {/* Layout spacer for fixed header */}
             <div className="h-[76px] md:h-[92px]" />
 
             <MenuOverlay
