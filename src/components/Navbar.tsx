@@ -4,76 +4,86 @@ import { useEffect, useState } from "react";
 import MenuOverlay from "./MenuOverlay";
 
 export default function Navbar() {
-    const [menuOpen, setMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
-    useEffect(() => {
-        const handleKeyDown = (event: KeyboardEvent) => {
-            if (event.key === "Escape") {
-                setMenuOpen(false);
-            }
-        };
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+      }
+    };
 
-        window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown);
 
-        return () => {
-            window.removeEventListener("keydown", handleKeyDown);
-        };
-    }, []);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
-    useEffect(() => {
-        document.body.style.overflow = menuOpen ? "hidden" : "";
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
 
-        return () => {
-            document.body.style.overflow = "";
-        };
-    }, [menuOpen]);
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
 
-    return (
-        <>
-            {/* Fixed header pinned strictly to viewport bounds */}
+  return (
+    <>
+      <nav className="fixed inset-x-0 top-0 z-50 flex h-[76px] w-full items-center justify-between px-6 sm:px-8 md:h-[92px] md:px-12 lg:px-16">
+        {/* Contact link: desktop only */}
+        <a
+          href="/kontakt"
+          className="hidden items-center gap-1 font-clearface text-[16px] uppercase tracking-[0.04em] transition-opacity hover:opacity-50 md:inline-flex"
+        >
+          VÕTA ÜHENDUST
+          <span className="text-[#D32F2F]">→</span>
+        </a>
 
-            <nav className="fixed inset-x-0 top-0 z-50 flex h-[76px] w-full max-w-full items-center justify-between px-6 sm:px-8 md:h-[92px] md:px-12 lg:px-16">
+        {/* Logo */}
+        <a
+          href="/"
+          aria-label="LL Trading – avaleht"
+          className="relative whitespace-nowrap font-clearface text-[21px] font-medium tracking-[0.01em] md:absolute md:left-1/2 md:-translate-x-1/2 md:text-[25px]"
+        >
+          <span className="text-[#D32F2F]">LL</span> TRADING
+        </a>
 
-                {/* Contact CTA link */}
-                <a
-                    href="/kontakt"
-                    className="font-clearface text-[16px] uppercase tracking-[0.08em] transition-opacity hover:opacity-50 md:text-[16px]"
-                >
-                    VÕTA ÜHENDUST{" "}
-                    <span className="text-[#D32F2F]">→</span>
-                </a>
-
-                {/* Centered logo */}
-                <a
-                    href="/"
-                    className="absolute left-1/2 -translate-x-1/2 whitespace-nowrap font-clearface text-[19px] font-medium tracking-[0.01em] sm:text-[21px] md:text-[25px]"
-                >
-                    <span className="text-[#D32F2F]">LL</span> TRADING
-                </a>
-
-                {/* Hamburger menu trigger button */}
-                <button
-                    type="button"
-                    onClick={() => setMenuOpen(true)}
-                    aria-label="Ava menüü"
-                    aria-expanded={menuOpen}
-                    className="flex h-8 w-8 items-center justify-center transition-opacity hover:opacity-50"
-                >
-                    <span className="flex w-6 flex-col gap-[5px]">
-                        <span className="h-px w-full bg-[#111111]" />
-                        <span className="h-px w-full bg-[#111111]" />
-                        <span className="h-px w-full bg-[#111111]" />
-                    </span>
-                </button>
-            </nav>
-
-            {/* Layout spacer for fixed header */}
-            <div className="h-[76px] md:h-[92px]" />
-
-            <MenuOverlay
-                open={menuOpen}
-                onClose={() => setMenuOpen(false)}
+        {/* Hamburger menu */}
+        <button
+          type="button"
+          onClick={() => setMenuOpen((open) => !open)}
+          aria-label={menuOpen ? "Sulge menüü" : "Ava menüü"}
+          aria-expanded={menuOpen}
+          className="flex h-10 w-10 shrink-0 items-center justify-center transition-opacity hover:opacity-50"
+        >
+          <span className="flex w-6 flex-col gap-[6px]">
+            <span
+              className={`h-px w-full bg-[#111111] transition-transform duration-300 ${
+                menuOpen ? "translate-y-[3.5px] rotate-45" : ""
+              }`}
             />
-        </>
-    );
+            <span
+              className={`h-px w-full bg-[#111111] transition-all duration-300 ${
+                menuOpen ? "scale-x-0 opacity-0" : ""
+              }`}
+            />
+            <span
+              className={`h-px w-full bg-[#111111] transition-transform duration-300 ${
+                menuOpen ? "-translate-y-[3.5px] -rotate-45" : ""
+              }`}
+            />
+          </span>
+        </button>
+      </nav>
+
+      {/* Space reserved for fixed navbar */}
+      <div className="h-[76px] md:h-[92px]" />
+
+      <MenuOverlay
+        open={menuOpen}
+        onClose={() => setMenuOpen(false)}
+      />
+    </>
+  );
 }
