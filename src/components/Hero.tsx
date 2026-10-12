@@ -46,14 +46,14 @@ export default function Hero() {
             "-=0.65",
           )
           .from(
-            "[data-hero='headline']",
+            "[data-hero='headline-line']",
             {
-              opacity: 0,
-              y: 65,
-              duration: 1.5,
+              yPercent: 110,
+              duration: 1.35,
+              stagger: 0.14,
               ease: "power4.out",
             },
-            "-=0.4",
+            "-=0.45",
           )
           .from(
             "[data-hero='description']",
@@ -62,7 +62,7 @@ export default function Hero() {
               y: 18,
               duration: 0.8,
             },
-            "-=0.45",
+            "-=0.65",
           )
           .from(
             "[data-hero='location']",
@@ -115,18 +115,22 @@ export default function Hero() {
       {/* Large red circle */}
       <div
         data-hero="circle-red"
-        className="hero-red-circle pointer-events-none absolute -right-[100px] top-[5%] z-0 h-[190px] w-[190px] rounded-full border-[1.5px] border-[#D32F2F]/90 sm:-right-[55px] sm:h-[280px] sm:w-[280px] md:right-[3%] md:top-[5%] md:h-[clamp(420px,35vw,540px)] md:w-[clamp(420px,35vw,540px)] md:border-[2.5px]"
+        className="hero-red-circle pointer-events-none absolute -right-[100px] top-[5%] z-0 h-[190px] w-[190px] rounded-full border-[1.5px] border-[#D32F2F]/90 sm:-right-[55px] sm:h-[280px] sm:w-[280px] md:right-[5%] md:top-[2%] md:h-[clamp(420px,35vw,540px)] md:w-[clamp(420px,35vw,540px)] md:border-[2.5px]"
       />
 
       {/* Main headline */}
       <div className="absolute left-1/2 top-[38%] z-10 w-[calc(100%-48px)] min-w-0 -translate-x-1/2 -translate-y-1/2 sm:top-[44%] sm:w-full sm:px-4 md:top-[45%] md:w-full md:px-0">
-        <h1
-          data-hero="headline"
-          className="w-full max-w-full break-keep text-center font-clearface text-[clamp(1.8rem,6.2vw,7.5rem)] font-normal leading-[0.98] tracking-[-0.035em] sm:text-[clamp(2.4rem,7vw,7.5rem)] sm:tracking-[-0.015em] sm:leading-[1.02]"
-        >
-          ALGDOKUMENTIDEST
-          <br />
-          AASTAARUANDENI.
+        <h1 className="w-full max-w-full break-keep text-center font-clearface text-[clamp(1.8rem,6.2vw,7.5rem)] font-normal leading-[0.98] tracking-[-0.035em] sm:text-[clamp(2.4rem,7vw,7.5rem)] sm:tracking-[-0.015em] sm:leading-[1.02]">
+          <span className="block overflow-hidden pb-[0.06em]">
+            <span data-hero="headline-line" className="block">
+              ALGDOKUMENTIDEST
+            </span>
+          </span>
+          <span className="block overflow-hidden pb-[0.06em]">
+            <span data-hero="headline-line" className="block">
+              AASTAARUANDENI.
+            </span>
+          </span>
         </h1>
       </div>
 

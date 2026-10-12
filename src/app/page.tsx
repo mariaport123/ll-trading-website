@@ -7,15 +7,17 @@ import Team from "@/components/Team";
 import Pricing from "@/components/Pricing";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import Marquee from "@/components/Marquee";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#F8F5EF] text-[#111111]">
+    <main className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
       <Navbar />
 
       <Hero />
       <Experience />
       <Services />
+      <Marquee />
       <News />
       <Team />
       <Pricing />

@@ -1,3 +1,4 @@
+
 "use client";
 
 import gsap from "gsap";
@@ -12,6 +13,20 @@ export default function Experience() {
 
   useGSAP(
     () => {
+      const accentPath = sectionRef.current?.querySelector(
+        "[data-experience='accent'] path",
+      ) as SVGPathElement | null;
+
+      if (accentPath) {
+        const pathLength = accentPath.getTotalLength();
+
+        gsap.set(accentPath, {
+          strokeDasharray: pathLength,
+          strokeDashoffset: pathLength,
+          opacity: 1,
+        });
+      }
+
       const mm = gsap.matchMedia();
 
       mm.add("(prefers-reduced-motion: no-preference)", () => {
@@ -46,7 +61,7 @@ export default function Experience() {
             "[data-experience='heading']",
             {
               opacity: 0,
-              y: 30,
+              y: 25,
               duration: 0.8,
             },
             "-=0.65",
@@ -55,7 +70,7 @@ export default function Experience() {
             "[data-experience='years']",
             {
               opacity: 0,
-              x: 15,
+              x: 12,
               duration: 0.7,
             },
             "-=0.4",
@@ -69,13 +84,12 @@ export default function Experience() {
             },
             "-=0.3",
           )
-          .from(
+          .to(
             "[data-experience='accent'] path",
             {
-              opacity: 0,
-              drawSVG: "0%",
-              duration: 1,
-              ease: "power2.out",
+              strokeDashoffset: 0,
+              duration: 1.6,
+              ease: "power2.inOut",
             },
             "-=0.3",
           );
@@ -90,67 +104,67 @@ export default function Experience() {
     <section
       ref={sectionRef}
       id="about"
-      className="w-full px-6 py-16 md:px-12 lg:px-20 md:py-24"
+      className="w-full overflow-hidden px-6 py-12 sm:px-8 sm:py-16 md:px-12 md:py-24 lg:px-20"
     >
       <div className="w-full">
-        {/* section index */}
+        {/* Section index */}
         <div
           data-experience="index"
-          className="mb-12 flex items-center gap-6 font-inter text-[10px] uppercase tracking-[0.1em] text-[#111111] md:mb-16 md:text-xs"
+          className="mb-8 flex items-center gap-4 font-inter text-[9px] uppercase tracking-[0.1em] text-[#111111] sm:mb-10 sm:gap-6 sm:text-[10px] md:mb-16 md:text-xs"
         >
           <span>01 / 06</span>
           <span>MEIE KOGEMUS</span>
         </div>
 
-        {/* main content */}
-        <div className="grid grid-cols-1 items-start gap-10 md:grid-cols-12 md:gap-6 lg:gap-8">
-          {/* number */}
-          <div className="relative flex min-h-[220px] flex-col justify-between pl-6 md:col-span-5 md:min-h-[300px] md:translate-x-[130px] md:pl-10 lg:translate-x-[160px]">
-            <div className="absolute left-0 top-0 h-full w-px bg-[#B8B3AA]/60" />
+        {/* Main content */}
+        <div className="grid grid-cols-1 items-start gap-5 sm:gap-7 md:grid-cols-12 md:gap-6 lg:gap-8">
+          {/* Number */}
+          <div className="relative min-w-0 pl-4 sm:pl-6 md:col-span-5 md:min-h-[300px] md:translate-x-[clamp(40px,9vw,130px)] md:pl-10 lg:translate-x-[160px]">
+            <div className="absolute bottom-0 left-0 top-0 w-px bg-[#B8B3AA]/60" />
 
-            <div className="mt-8 md:mt-auto">
+            <div className="py-2 sm:py-4 md:mt-auto md:py-0">
               <span
                 data-experience="number"
-                className="inline-block font-clearface text-[clamp(9rem,18vw,16rem)] font-normal leading-[0.72] tracking-[-0.05em] text-[#D32F2F]"
+                className="inline-block font-clearface text-[clamp(7rem,28vw,12rem)] font-normal leading-[0.8] tracking-[-0.06em] text-[#D32F2F] sm:text-[clamp(9rem,23vw,14rem)] md:text-[clamp(9rem,18vw,16rem)]"
               >
                 30
               </span>
             </div>
           </div>
 
-          {/* right column content */}
-          <div className="flex flex-col justify-between pt-2 md:col-span-7 md:pt-0">
-            <div>
-              {/* heading and years */}
-              <div className="flex items-start justify-between gap-4 lg:gap-6">
-                <h2
-                  data-experience="heading"
-                  className="font-clearface text-[clamp(3rem,6vw,5.5rem)] font-normal leading-[0.88] tracking-[-0.035em] text-[#111111]"
-                >
-                  AASTAT
-                  <br />
-                  KOGEMUST.
-                </h2>
+          {/* Right column content */}
+          <div className="min-w-0 pt-0 md:col-span-7 md:pt-0">
+            {/* Heading and years */}
+            <div className="flex min-w-0 items-start justify-between gap-3 sm:gap-5 md:gap-4 lg:gap-6">
+              <h2
+                data-experience="heading"
+                className="min-w-0 flex-1 font-clearface text-[clamp(2.7rem,10.5vw,5.5rem)] font-normal leading-[0.9] tracking-[-0.045em] text-[#111111] sm:text-[clamp(3.5rem,8vw,5.5rem)] md:flex-none md:text-[clamp(3rem,6vw,5.5rem)] md:leading-[0.88] md:tracking-[-0.035em]"
+              >
+                AASTAT
+                <br />
+                KOGEMUST.
+              </h2>
 
-                {/* years */}
-                <div
-                  data-experience="years"
-                  className="relative right-4 top-12 flex shrink-0 items-center gap-5 pt-2 font-inter text-xs font-normal uppercase leading-[1.6] tracking-[0.04em] md:right-6 md:top-20 md:gap-8"
-                >
-                  <span className="h-[150px] w-px bg-[#B8B3AA]/80 md:h-[220px]" />
+              {/* Years */}
+              <div
+                data-experience="years"
+                className="relative mt-2 flex shrink-0 items-start gap-2 pt-1 font-inter text-[8px] font-normal uppercase leading-[1.5] tracking-[0.02em] sm:mt-4 sm:gap-3 sm:text-[10px] sm:tracking-[0.04em] md:mt-10 md:gap-5 md:pt-2 md:text-xs lg:gap-8"
+              >
+                <span className="h-[88px] w-px bg-[#B8B3AA]/80 sm:h-[120px] md:h-[220px]" />
 
-                  <div className="flex flex-col items-center gap-y-4">
-                    <span className="text-[#D32F2F]">1997</span>
-                    <span className="text-[#5F5C57]">TÄNASENI</span>
-                  </div>
+                <div className="flex flex-col items-center gap-y-3 whitespace-nowrap sm:gap-y-4">
+                  <span className="text-[#D32F2F]">1997</span>
+                  <span className="text-[#5F5C57]">TÄNASENI</span>
                 </div>
               </div>
+            </div>
 
-              {/* description */}
-              <p
-                data-experience="description"
-                className="mt-10 max-w-[560px] border-l border-[#B8B3AA]/70 pl-6 font-inter text-base leading-[1.75] text-[#5F5C57] md:mt-14 md:text-lg"
-              >
+            {/* Description */}
+            <div
+              data-experience="description"
+              className="mt-3 max-w-[520px] border-l border-[#B8B3AA]/80 pl-4 sm:mt-4 sm:pl-6 md:mt-0"
+            >
+              <p className="font-inter text-sm leading-[1.65] text-[#5F5C57] sm:text-base sm:leading-[1.75] md:text-lg">
                 LL Trading on pakkunud raamatupidamisteenuseid Eesti ettevõtetele
                 alates 1997. aastast. Meie klientide hulgas on nii väiksemaid kui
                 ka suuremaid ettevõtteid ning teenindame kliente nii Pärnus kui
@@ -158,10 +172,10 @@ export default function Experience() {
               </p>
             </div>
 
-            {/* wavy accent */}
+            {/* Wavy accent */}
             <div
               data-experience="accent"
-              className="mt-12 pl-2 md:mt-16"
+              className="mt-5 pl-1 sm:mt-6 md:mt-10 md:pl-2"
             >
               <svg
                 width="130"
@@ -169,7 +183,7 @@ export default function Experience() {
                 viewBox="0 0 130 55"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                className="text-[#D32F2F]"
+                className="h-auto w-[100px] text-[#D32F2F] sm:w-[130px]"
               >
                 <path
                   d="M2 52 C2 28 5 12 18 14 C32 16 42 39 54 30 C66 21 66 3 80 8 C94 13 100 30 111 20 C120 12 123 5 126 1"
