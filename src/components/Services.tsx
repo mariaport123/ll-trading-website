@@ -167,9 +167,10 @@ export default function Services() {
               >
                 {/* Number */}
                 <span
-                  className={`font-clearface text-[1.5rem] leading-none transition-colors duration-300 md:text-[2rem] ${index === 0 || isOpen
-                      ? "text-[#D32F2F]"
-                      : "text-[#111111] group-hover:text-[#D32F2F]"
+                  className={`font-clearface text-[1.5rem] leading-none transition-colors duration-300 md:text-[2rem] ${isOpen
+                    ? "text-[#D32F2F]"
+                    : "text-[#111111] group-hover:text-[#D32F2F]"
+                    }
                     }`}
                 >
                   {service.number}
@@ -178,8 +179,8 @@ export default function Services() {
                 {/* Service title */}
                 <span
                   className={`min-w-0 font-clearface text-[clamp(1.35rem,5.5vw,2.1rem)] leading-[1.05] tracking-[-0.035em] transition-[color,transform] duration-500 ease-out sm:text-[clamp(1.8rem,3.5vw,3.8rem)] md:text-[clamp(1.8rem,3.5vw,3.8rem)] ${isOpen
-                      ? "translate-x-1 text-[#D32F2F]"
-                      : "text-[#111111] group-hover:translate-x-1 group-hover:text-[#D32F2F] md:group-hover:translate-x-2"
+                    ? "translate-x-1 text-[#D32F2F]"
+                    : "text-[#111111] group-hover:translate-x-1 group-hover:text-[#D32F2F] md:group-hover:translate-x-2"
                     }`}
                 >
                   {service.title}
@@ -193,8 +194,8 @@ export default function Services() {
                 {/* Plus button */}
                 <span
                   className={`flex h-10 w-10 shrink-0 items-center justify-center justify-self-end rounded-full border font-inter text-xl font-light transition-[transform,color,background-color,border-color] duration-500 ease-out md:h-[68px] md:w-[68px] md:text-2xl ${isOpen
-                      ? "rotate-45 border-[#D32F2F] bg-[#D32F2F] text-[#F8F5EF]"
-                      : "border-[#B8B3AA] text-[#111111] group-hover:border-[#D32F2F] group-hover:text-[#D32F2F]"
+                    ? "rotate-45 border-[#D32F2F] bg-[#D32F2F] text-[#F8F5EF]"
+                    : "border-[#B8B3AA] text-[#111111] group-hover:border-[#D32F2F] group-hover:text-[#D32F2F]"
                     }`}
                   aria-hidden="true"
                 >
@@ -205,8 +206,8 @@ export default function Services() {
               {/* Expandable details */}
               <div
                 className={`grid transition-[grid-template-rows,opacity] duration-500 ease-in-out ${isOpen
-                    ? "grid-rows-[1fr] opacity-100"
-                    : "grid-rows-[0fr] opacity-0"
+                  ? "grid-rows-[1fr] opacity-100"
+                  : "grid-rows-[0fr] opacity-0"
                   }`}
                 aria-hidden={!isOpen}
               >
@@ -224,8 +225,8 @@ export default function Services() {
                           <li
                             key={detail}
                             className={`flex gap-3 font-inter text-sm leading-relaxed text-[#5F5C57] transition-[opacity,transform] duration-500 ease-out ${isOpen
-                                ? "translate-y-0 opacity-100"
-                                : "translate-y-2 opacity-0"
+                              ? "translate-y-0 opacity-100"
+                              : "translate-y-2 opacity-0"
                               }`}
                             style={{
                               transitionDelay: isOpen

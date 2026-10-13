@@ -37,7 +37,7 @@ export default function Footer() {
             Hinnakiri
           </a>
 
-          <a href="/#contact" className="transition-colors hover:text-[#D32F2F]">
+          <a href="/kontakt" className="transition-colors hover:text-[#D32F2F]">
             Kontakt
           </a>
         </nav>

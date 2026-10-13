@@ -18,7 +18,7 @@ const menuItems = [
   { number: "02", label: "Teenused", href: "/#services" },
   { number: "03", label: "Uudised", href: "/#news" },
   { number: "04", label: "Hinnakiri", href: "/hinnakiri" },
-  { number: "05", label: "Kontakt", href: "/#contact" },
+  { number: "05", label: "Kontakt", href: "/kontakt" },
 ];
 
 export default function MenuOverlay({

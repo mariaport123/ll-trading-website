@@ -51,9 +51,6 @@ export default function KontaktPage() {
       <section className="px-5 pb-20 md:px-12 md:pb-28 lg:px-16">
         <div className="grid gap-14 border-t border-[#111111]/25 pt-8 md:grid-cols-[0.8fr_1.2fr] md:gap-16 md:pt-10 lg:gap-24">
           <div>
-            <p className="mb-8 font-inter text-[10px] uppercase tracking-[0.1em] text-[#D32F2F]">
-              Oleme sinu jaoks olemas
-            </p>
 
             <div className="space-y-8">
               {contacts.map((contact) => (
