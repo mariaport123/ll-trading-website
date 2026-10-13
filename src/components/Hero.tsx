@@ -142,7 +142,7 @@ export default function Hero() {
         Raamatupidamisteenus, mis hoiab su
         <br className="hidden sm:block" />
         <span className="sm:hidden"> </span>
-        ettevõtte numbritel silma peal.
+        ettevõtte maksudel silma peal.
       </div>
 
       {/* Location */}

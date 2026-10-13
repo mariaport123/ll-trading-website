@@ -79,9 +79,9 @@ export default function News() {
       <div className="grid gap-16 md:grid-cols-[0.8fr_1.2fr] md:gap-24">
         <div data-news-intro>
           <h2 className="font-clearface text-[clamp(3.5rem,6vw,6.5rem)] font-normal leading-[0.9] tracking-[-0.02em]">
-            OLULINE
+            KASULIK
             <br />
-            TEADA.
+            INFO.
           </h2>
 
           <p className="mt-8 max-w-[350px] font-inter text-sm leading-[1.6] text-[#5F5C57]">
