@@ -140,7 +140,7 @@ export default function Team() {
             <br />
             TAGA ON
             <br />
-            INIMESED<span className="text-[#D32F2F]">.</span>
+            INIMESED.
           </h2>
 
           <p className="mt-8 max-w-[360px] font-inter text-sm leading-[1.6] text-[#5F5C57] md:mt-10 md:text-base">

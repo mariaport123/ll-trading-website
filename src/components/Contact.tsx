@@ -101,7 +101,7 @@ export default function Contact() {
             <br />
             ETTEVÕTTE
             <br />
-            VAJADUSTEST<span className="text-[#D32F2F]">.</span>
+            VAJADUSTEST.
           </h2>
 
           <div className="mt-8 max-w-[380px] md:mt-10">

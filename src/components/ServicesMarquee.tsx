@@ -45,12 +45,12 @@ export default function ServicesMarquee() {
                 <defs>
                     <path
                         id="services-wave-path"
-                        d="M-600 90 C-400 -10 -200 -10 0 90 S400 190 600 90 S1000 -10 1200 90 S1600 190 1800 90"
+                        d="M-600 90 C-400 10 -200 10 0 90 S400 170 600 90 S1000 10 1200 90 S1600 170 1800 90"
                     />
                 </defs>
 
                 <text
-                    className="fill-[#111111] font-clearface uppercase"
+                    className="services-marquee-text fill-[#111111] font-clearface uppercase"
                     fontSize="18"
                     letterSpacing="-1"
                 >
