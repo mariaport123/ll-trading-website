@@ -8,13 +8,14 @@ import Pricing from "@/components/Pricing";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import Marquee from "@/components/Marquee";
+import ServicesMarquee from "@/components/ServicesMarquee";
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
       <Navbar />
-
       <Hero />
+      <ServicesMarquee />
       <Experience />
       <Services />
       <Marquee />
@@ -22,7 +23,6 @@ export default function Home() {
       <Team />
       <Pricing />
       <Contact />
-
       <Footer />
     </main>
   );
