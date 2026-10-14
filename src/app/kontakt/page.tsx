@@ -1,4 +1,3 @@
-
 import Navbar from "@/components/Navbar";
 import ContactForm from "@/components/ContactForm";
 
@@ -25,53 +24,62 @@ const contacts = [
 
 export default function KontaktPage() {
   return (
-    <main className="min-h-screen bg-[#F8F5EF] text-[#111111]">
+    <main className="min-h-screen overflow-x-clip bg-[#F8F5EF] text-[#111111]">
       <Navbar />
 
-      {/* intro */}
-      <section className="px-5 pb-12 pt-10 md:px-12 md:pb-16 md:pt-12 lg:px-16">
-        <div className="mb-8 flex items-center gap-4 font-inter text-[9px] uppercase tracking-[0.12em] text-[#111111]/60 md:mb-10 md:text-[10px]">
+      {/* Intro */}
+      <section className="px-5 pb-10 pt-8 sm:px-8 sm:pb-12 sm:pt-10 md:px-12 md:pb-16 md:pt-12 lg:px-16">
+        <div className="mb-8 flex items-center gap-3 font-inter text-[9px] uppercase tracking-[0.12em] text-[#111111]/60 sm:mb-10 sm:gap-4 md:text-[10px]">
           <span>05 / 05</span>
-          <span className="h-px w-8 bg-[#111111]/25" />
-          <span>KONTAKT</span>
+          <span className="h-px w-6 bg-[#111111]/25 sm:w-8" />
+          <span>Kontakt</span>
         </div>
 
         <div className="max-w-3xl">
-          <h1 className="font-clearface text-[clamp(2.8rem,5vw,4.5rem)] leading-[0.95] tracking-[-0.02em]">
+          <h1 className="max-w-full break-words font-clearface text-[clamp(2.5rem,9vw,4.5rem)] leading-[0.92] tracking-[-0.035em] sm:text-[clamp(3rem,7vw,4.5rem)]">
             VÕTA ÜHENDUST<span className="text-[#D32F2F]">.</span>
           </h1>
-          <p className="mt-5 max-w-xl font-inter text-xs leading-relaxed text-[#111111]/70 md:text-sm">
+
+          <p className="mt-5 max-w-xl font-inter text-[13px] leading-[1.7] text-[#111111]/70 sm:mt-6 sm:text-sm">
             Otsid oma ettevõttele raamatupidajat või soovid teenuste kohta
             rohkem teada? Kirjuta meile ja leiame sobiva lahenduse.
           </p>
         </div>
       </section>
 
-      {/* contact details and form */}
-      <section className="px-5 pb-20 md:px-12 md:pb-28 lg:px-16">
-        <div className="grid gap-14 border-t border-[#111111]/25 pt-8 md:grid-cols-[0.8fr_1.2fr] md:gap-16 md:pt-10 lg:gap-24">
-          <div>
-
-            <div className="space-y-8">
-              {contacts.map((contact) => (
+      {/* Contact details and form */}
+      <section className="px-5 pb-16 sm:px-8 sm:pb-20 md:px-12 md:pb-28 lg:px-16">
+        <div className="grid min-w-0 gap-12 border-t border-[#111111]/25 pt-7 sm:gap-14 sm:pt-8 md:grid-cols-[0.8fr_1.2fr] md:gap-12 md:pt-10 lg:gap-24">
+          {/* Contact details */}
+          <div className="min-w-0">
+            <div className="space-y-0">
+              {contacts.map((contact, index) => (
                 <div
                   key={contact.email}
-                  className="border-b border-[#111111]/15 pb-6"
+                  className="border-b border-[#111111]/15 py-6 first:pt-0 sm:py-7"
                 >
-                  <h2 className="font-clearface text-xl tracking-[-0.02em] md:text-2xl">
-                    {contact.name}
-                  </h2>
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="min-w-0">
+                      <h2 className="font-clearface text-xl leading-tight tracking-[-0.02em] sm:text-2xl">
+                        {contact.name}
+                      </h2>
 
-                  <p className="mt-1 font-inter text-xs text-[#111111]/60">
-                    {contact.role}
-                  </p>
+                      <p className="mt-1.5 font-inter text-xs leading-relaxed text-[#111111]/60 sm:text-[13px]">
+                        {contact.role}
+                      </p>
+                    </div>
 
-                  <div className="mt-4 space-y-2 font-inter text-xs">
+                    <span className="shrink-0 pt-1 font-inter text-[9px] tracking-[0.08em] text-[#111111]/40">
+                      0{index + 1}
+                    </span>
+                  </div>
+
+                  <div className="mt-4 space-y-2 font-inter text-[13px] leading-relaxed sm:text-sm">
                     {contact.phone && (
                       <p>
                         <a
                           href={`tel:${contact.phone.replace(/\s/g, "")}`}
-                          className="transition-colors hover:text-[#D32F2F]"
+                          className="break-words transition-colors hover:text-[#D32F2F]"
                         >
                           {contact.phone}
                         </a>
@@ -81,7 +89,7 @@ export default function KontaktPage() {
                     <p>
                       <a
                         href={`mailto:${contact.email}`}
-                        className="transition-colors hover:text-[#D32F2F]"
+                        className="break-all transition-colors hover:text-[#D32F2F]"
                       >
                         {contact.email}
                       </a>
@@ -91,15 +99,16 @@ export default function KontaktPage() {
               ))}
             </div>
 
-            <p className="mt-6 font-inter text-[10px] leading-relaxed text-[#111111]/55">
+            <p className="mt-6 font-inter text-[11px] leading-[1.7] text-[#111111]/55 sm:text-xs">
               LL Trading OÜ · Pärnu, Eesti
               <br />
               Teenindame ettevõtteid üle Eesti.
             </p>
           </div>
 
-          <div>
-            <p className="mb-8 font-inter text-[10px] uppercase tracking-[0.1em] text-[#D32F2F]">
+          {/* Contact form */}
+          <div className="min-w-0">
+            <p className="mb-6 font-inter text-[10px] uppercase tracking-[0.1em] text-[#D32F2F] sm:mb-8">
               Saada meile sõnum
             </p>
 
@@ -108,9 +117,9 @@ export default function KontaktPage() {
         </div>
       </section>
 
-      {/* footer */}
-      <footer className="border-t border-[#111111]/15 px-5 py-8 md:px-12 md:py-10 lg:px-16">
-        <div className="grid gap-6 md:grid-cols-[1fr_auto_1fr] md:items-center">
+      {/* Footer */}
+      <footer className="border-t border-[#111111]/15 px-5 py-7 sm:px-8 sm:py-8 md:px-12 md:py-10 lg:px-16">
+        <div className="grid min-w-0 gap-7 md:grid-cols-[1fr_auto_1fr] md:items-center md:gap-6">
           <div>
             <a
               href="/"
@@ -118,14 +127,15 @@ export default function KontaktPage() {
             >
               <span className="text-[#D32F2F]">LL</span> TRADING OÜ
             </a>
-            <p className="mt-2 font-inter text-[9px] text-[#111111]/55">
+
+            <p className="mt-2 font-inter text-[10px] leading-relaxed text-[#111111]/55">
               Raamatupidamisteenused alates 1997
             </p>
           </div>
 
           <nav
             aria-label="Jaluse navigatsioon"
-            className="flex flex-wrap gap-x-5 gap-y-3 font-inter text-[9px] uppercase tracking-[0.08em]"
+            className="flex flex-wrap gap-x-5 gap-y-3 font-inter text-[10px] uppercase tracking-[0.08em]"
           >
             <a href="/#services" className="transition-colors hover:text-[#D32F2F]">
               Teenused
@@ -144,7 +154,7 @@ export default function KontaktPage() {
             </a>
           </nav>
 
-          <p className="font-inter text-[9px] text-[#111111]/55 md:text-right">
+          <p className="font-inter text-[10px] leading-[1.7] text-[#111111]/55 md:text-right">
             Pärnu, Eesti
             <br />
             © {new Date().getFullYear()} LL Trading OÜ
