@@ -102,7 +102,7 @@ export default function Pricing() {
           <h2 className="font-clearface text-[clamp(3rem,5.2vw,5.5rem)] font-normal leading-[1.02] tracking-[-0.035em]">
             ÜKS HIND EI
             <br />
-            SOBI KÕIGILE<span className="text-[#D32F2F]">.</span>
+            SOBI KÕIGILE.
           </h2>
 
           <p className="mt-8 max-w-[390px] font-inter text-sm leading-[1.7] text-[#5F5C57] md:mt-10 md:text-base">

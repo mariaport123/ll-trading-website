@@ -80,7 +80,7 @@ export default function HinnakiriPage() {
 
         <div className="max-w-3xl">
           <h1 className="font-clearface text-[clamp(2.8rem,5vw,4.5rem)] leading-[0.95] tracking-[-0.02em]">
-            HINNAKIRI<span className="text-[#D32F2F]">.</span>
+            HINNAKIRI.
           </h1>
 
           <p className="mt-4 max-w-xl font-inter text-xs leading-relaxed text-[#111111]/70 md:mt-5 md:text-sm">

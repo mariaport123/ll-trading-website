@@ -1,170 +1,423 @@
+
 "use client";
 
+import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { useRef } from "react";
 
 gsap.registerPlugin(useGSAP);
 
+const gridLines = [80, 140, 200, 260, 320, 380, 440, 500];
+
 export default function Hero() {
-  const heroRef = useRef<HTMLElement>(null);
+  const container = useRef<HTMLElement>(null);
 
   useGSAP(
     () => {
-      const mm = gsap.matchMedia();
+      const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
 
-      mm.add("(prefers-reduced-motion: no-preference)", () => {
-        const intro = gsap.timeline({
-          defaults: {
-            ease: "power3.out",
-          },
-        });
+      if (reduceMotion) {
+        gsap.set("[data-hero='graphic']", { opacity: 1 });
+        gsap.set("[data-hero='orbit']", { opacity: 0.8 });
+        gsap.set("[data-hero='grid']", { opacity: 0.35 });
+        gsap.set("[data-hero='route']", { opacity: 0.7 });
+        gsap.set("[data-hero='moving-dot']", { opacity: 1 });
+        gsap.set("[data-hero='arrow']", { opacity: 1 });
+        return;
+      }
 
-        intro
-          .from("[data-hero='meta']", {
-            opacity: 0,
-            y: 12,
-            duration: 0.7,
-          })
-          .from(
-            "[data-hero='circle-small']",
-            {
-              opacity: 0,
-              scale: 0.7,
-              duration: 0.8,
-            },
-            "-=0.5",
-          )
-          .from(
-            "[data-hero='circle-red']",
-            {
-              opacity: 0,
-              x: 45,
-              scale: 0.96,
-              duration: 1.2,
-            },
-            "-=0.65",
-          )
-          .from(
-            "[data-hero='headline-line']",
-            {
-              yPercent: 110,
-              duration: 1.35,
-              stagger: 0.14,
-              ease: "power4.out",
-            },
-            "-=0.45",
-          )
-          .from(
-            "[data-hero='description']",
-            {
-              opacity: 0,
-              y: 18,
-              duration: 0.8,
-            },
-            "-=0.65",
-          )
-          .from(
-            "[data-hero='location']",
-            {
-              opacity: 0,
-              y: 15,
-              duration: 0.7,
-            },
-            "-=0.55",
-          )
-          .from(
-            "[data-hero='bottom-line']",
-            {
-              scaleX: 0,
-              transformOrigin: "left center",
-              duration: 0.7,
-            },
-            "-=0.5",
-          );
+      const intro = gsap.timeline({
+        defaults: { ease: "power2.out" },
       });
 
-      return () => mm.revert();
+      intro
+        .from("[data-hero='eyebrow']", {
+          opacity: 0,
+          y: 8,
+          duration: 0.7,
+        })
+        .from(
+          "[data-hero='title-line']",
+          {
+            opacity: 0,
+            y: 18,
+            duration: 1,
+            stagger: 0.12,
+          },
+          "-=0.35"
+        )
+        .from(
+          "[data-hero='description'], [data-hero='location']",
+          {
+            opacity: 0,
+            y: 8,
+            duration: 0.8,
+            stagger: 0.12,
+          },
+          "-=0.45"
+        );
+
+      gsap.set("[data-hero='graphic']", { opacity: 0 });
+      gsap.set("[data-hero='orbit']", {
+        opacity: 0,
+        strokeDasharray: 1200,
+        strokeDashoffset: 1200,
+      });
+      gsap.set("[data-hero='grid']", { opacity: 0 });
+
+      const route = container.current?.querySelector<SVGPathElement>(
+        "[data-hero='route']"
+      );
+      const dot = container.current?.querySelector<SVGCircleElement>(
+        "[data-hero='moving-dot']"
+      );
+
+      const routeLength = route?.getTotalLength() ?? 700;
+
+      gsap.set("[data-hero='route']", {
+        opacity: 0,
+        strokeDasharray: routeLength,
+        strokeDashoffset: routeLength,
+      });
+      gsap.set("[data-hero='moving-dot']", { opacity: 0 });
+      gsap.set("[data-hero='arrow']", {
+        opacity: 0,
+        x: -8,
+      });
+
+      const graphicTimeline = gsap.timeline({
+        delay: 0.35,
+        defaults: { ease: "power2.out" },
+      });
+
+      graphicTimeline
+        .to("[data-hero='graphic']", {
+          opacity: 1,
+          duration: 1.2,
+        })
+        .to(
+          "[data-hero='grid']",
+          {
+            opacity: 0.3,
+            duration: 1.5,
+          },
+          "-=0.7"
+        )
+        .to(
+          "[data-hero='orbit']",
+          {
+            opacity: 0.8,
+            strokeDashoffset: 0,
+            duration: 2.1,
+            ease: "power1.inOut",
+          },
+          "-=0.8"
+        );
+
+      if (route && dot) {
+        const progress = { value: 0 };
+
+        graphicTimeline
+          .set(dot, { opacity: 1 })
+          .to(
+            "[data-hero='route']",
+            {
+              opacity: 0.72,
+              strokeDashoffset: 0,
+              duration: 2.8,
+              ease: "power1.inOut",
+            },
+            "-=0.5"
+          )
+          .to(
+            progress,
+            {
+              value: 1,
+              duration: 2.8,
+              ease: "power1.inOut",
+              onUpdate: () => {
+                const point = route.getPointAtLength(
+                  routeLength * progress.value
+                );
+
+                dot.setAttribute("cx", String(point.x));
+                dot.setAttribute("cy", String(point.y));
+              },
+            },
+            "<"
+          )
+          .to(
+            "[data-hero='arrow']",
+            {
+              opacity: 0.9,
+              x: 0,
+              duration: 0.55,
+            },
+            "-=0.15"
+          );
+      }
+
+      graphicTimeline.to("[data-hero='graphic']", {
+        opacity: 0.9,
+        duration: 1.2,
+      });
+
+      // Kuma muutub aeglaselt ühe korra, ilma korduva animatsioonita.
+      gsap.to("[data-hero='glow']", {
+        opacity: 0.15,
+        duration: 3.5,
+        ease: "sine.inOut",
+      });
     },
-    { scope: heroRef },
+    { scope: container }
   );
 
   return (
     <section
-      ref={heroRef}
-      className="relative h-[620px] min-h-0 overflow-hidden px-6 sm:h-[680px] sm:px-8 md:h-auto md:min-h-[calc(100vh-92px)] md:px-12 lg:px-16"
+      ref={container}
+      className="relative isolate flex min-h-[calc(100svh-5rem)] w-full flex-col overflow-hidden bg-[#eee9e1] text-[#111111] sm:min-h-[calc(100svh-5rem)]"
     >
-      {/* Starting point */}
+      {/* Dekoratiivne graafika pealkirja taga */}
       <div
-        data-hero="meta"
-        className="absolute left-6 top-[13%] flex items-center gap-3 font-inter text-[9px] uppercase tracking-[0.08em] text-[#77736D] sm:left-8 sm:top-[19%] sm:text-[14px] md:left-12 md:top-[21%] md:gap-4 md:text-[14px] lg:left-16"
+        data-hero="graphic"
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
       >
-        <span>Alates 1997</span>
-        <span className="h-px w-8 bg-[#B8B3AA] sm:w-10 md:w-12" />
+        <svg
+          viewBox="0 0 900 620"
+          preserveAspectRatio="xMidYMid meet"
+          className="
+            absolute
+            left-[50%] top-[39%]
+            h-[min(100vw,440px)]
+            w-[min(112vw,650px)]
+            -translate-x-1/2 -translate-y-1/2
+            overflow-visible
+            sm:left-[66%] sm:top-[43%]
+            sm:h-[min(65vw,690px)]
+            sm:w-[min(82vw,900px)]
+            md:left-[69%] md:top-[42%]
+          "
+        >
+          <defs>
+            <radialGradient id="hero-circle-glow">
+              <stop offset="0%" stopColor="#d8322b" stopOpacity="0.055" />
+              <stop offset="58%" stopColor="#d8322b" stopOpacity="0.018" />
+              <stop offset="100%" stopColor="#d8322b" stopOpacity="0" />
+            </radialGradient>
+
+            <linearGradient
+              id="hero-line-fade"
+              x1="0"
+              y1="0"
+              x2="1"
+              y2="0"
+            >
+              <stop offset="0%" stopColor="#d8322b" stopOpacity="0.12" />
+              <stop offset="48%" stopColor="#d8322b" stopOpacity="0.8" />
+              <stop offset="100%" stopColor="#d8322b" stopOpacity="0.95" />
+            </linearGradient>
+
+            <filter
+              id="hero-soft-glow"
+              x="-50%"
+              y="-50%"
+              width="200%"
+              height="200%"
+            >
+              <feGaussianBlur stdDeviation="8" />
+            </filter>
+          </defs>
+
+          {/* Pehmealt hajutatud punakas kuma */}
+          <circle
+            data-hero="glow"
+            cx="510"
+            cy="285"
+            r="245"
+            fill="url(#hero-circle-glow)"
+            opacity="0.45"
+          />
+
+          {/* Õrn tehniline ruudustik */}
+          <g
+            data-hero="grid"
+            stroke="#898177"
+            strokeWidth="0.8"
+            opacity="0"
+          >
+            {gridLines.map((position) => (
+              <line
+                key={`vertical-${position}`}
+                x1={position + 130}
+                y1="70"
+                x2={position + 130}
+                y2="500"
+              />
+            ))}
+
+            {[90, 150, 210, 270, 330, 390, 450].map((position) => (
+              <line
+                key={`horizontal-${position}`}
+                x1="190"
+                y1={position}
+                x2="790"
+                y2={position}
+              />
+            ))}
+          </g>
+
+          {/* Õrn keskjoon */}
+          <line
+            x1="510"
+            y1="18"
+            x2="510"
+            y2="560"
+            stroke="#d8322b"
+            strokeWidth="0.8"
+            strokeDasharray="2 5"
+            opacity="0.3"
+          />
+
+          {/* Suur, õhuke ring */}
+          <circle
+            data-hero="orbit"
+            cx="510"
+            cy="285"
+            r="225"
+            fill="none"
+            stroke="#d8322b"
+            strokeWidth="1.05"
+            opacity="0"
+          />
+
+          {/* Väike ring vasakul */}
+          <g opacity="0.58">
+            <circle
+              cx="165"
+              cy="160"
+              r="34"
+              fill="none"
+              stroke="#9c958a"
+              strokeWidth="0.9"
+            />
+            <path
+              d="M159 160 H171 M165 154 V166"
+              stroke="#9c958a"
+              strokeWidth="0.8"
+            />
+          </g>
+
+          {/* Peen horisontaalne mõõtjoon */}
+          <path
+            d="M165 160 H825"
+            fill="none"
+            stroke="#9c958a"
+            strokeWidth="0.7"
+            strokeDasharray="1.5 4"
+            opacity="0.5"
+          />
+
+          {/* Kaarejoon, mis joonistub ühe korra */}
+          <path
+            data-hero="route"
+            d="M335 420
+               C395 420 415 365 450 305
+               C480 255 510 230 560 230
+               C610 230 655 250 690 225
+               C710 210 723 200 742 190
+               H835"
+            fill="none"
+            stroke="url(#hero-line-fade)"
+            strokeWidth="1.15"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            opacity="0"
+          />
+
+          {/* Ringist väljuv nooleke */}
+          <g data-hero="arrow" opacity="0">
+            <path
+              d="M826 185 L835 190 L826 195"
+              fill="none"
+              stroke="#d8322b"
+              strokeWidth="1.1"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </g>
+
+          {/* Mööda joont liikuv punkt */}
+          <circle
+            data-hero="moving-dot"
+            cx="335"
+            cy="420"
+            r="3"
+            fill="#d8322b"
+            opacity="0"
+          />
+
+          {/* Pehme välimine punktikuma */}
+          <circle
+            cx="335"
+            cy="420"
+            r="6"
+            fill="#d8322b"
+            opacity="0.12"
+            filter="url(#hero-soft-glow)"
+          />
+        </svg>
       </div>
 
-      {/* Small circle */}
-      <div
-        data-hero="circle-small"
-        className="pointer-events-none absolute left-[68%] top-[12%] h-7 w-7 rounded-full border border-[#8F8A82] sm:left-[62%] sm:top-[16%] sm:h-9 sm:w-9 md:left-[57%] md:top-[15%] md:h-[52px] md:w-[52px]"
-      />
+      {/* Ülemine väike märgis */}
+      <div className="absolute left-[5.5%] top-[24%] z-10 flex items-center gap-4 sm:top-[30%]">
+        <span
+          data-hero="eyebrow"
+          className="font-sans text-[10px] tracking-[0.12em] text-[#716b63] sm:text-xs"
+        >
+          ALATES 1997
+        </span>
+        <span className="h-px w-10 bg-[#b9b1a6]" />
+      </div>
 
-      {/* Small horizontal line */}
-      <div className="pointer-events-none absolute right-[9%] top-[8%] h-px w-8 bg-[#B8B3AA] sm:w-10 md:right-[10%] md:top-[2%] md:w-[52px]" />
-
-      {/* Large red circle */}
-      <div
-        data-hero="circle-red"
-        className="hero-red-circle pointer-events-none absolute -right-[100px] top-[5%] z-0 h-[190px] w-[190px] rounded-full border-[1.5px] border-[#D32F2F]/90 sm:-right-[55px] sm:h-[280px] sm:w-[280px] md:right-[5%] md:top-[2%] md:h-[clamp(420px,35vw,540px)] md:w-[clamp(420px,35vw,540px)] md:border-[2.5px]"
-      />
-
-      {/* Main headline */}
-      <div className="absolute left-1/2 top-[38%] z-10 w-[calc(100%-48px)] min-w-0 -translate-x-1/2 -translate-y-1/2 sm:top-[44%] sm:w-full sm:px-4 md:top-[45%] md:w-full md:px-0">
-        <h1 className="w-full max-w-full break-keep text-center font-clearface text-[clamp(1.8rem,6.2vw,7.5rem)] font-normal leading-[0.98] tracking-[-0.035em] sm:text-[clamp(2.4rem,7vw,7.5rem)] sm:tracking-[-0.015em] sm:leading-[1.02]">
-          <span className="block overflow-hidden pb-[0.06em]">
-            <span data-hero="headline-line" className="block">
-              ALGDOKUMENTIDEST
-            </span>
+      {/* Pealkiri */}
+      <div className="relative z-10 flex flex-1 items-center justify-center px-[4%] pb-8 pt-16 sm:px-[3%] sm:pb-16 sm:pt-24">
+        <h1 className="w-full max-w-full break-keep text-center font-clearface text-[clamp(1.65rem,7.1vw,2.6rem)] font-normal leading-[0.98] tracking-[-0.045em] sm:text-[clamp(2.4rem,6.5vw,7rem)] sm:leading-[1.02] sm:tracking-[-0.015em]">
+          <span data-hero="title-line" className="block">
+            ALGDOKUMENTIDEST
           </span>
-          <span className="block overflow-hidden pb-[0.06em]">
-            <span data-hero="headline-line" className="block">
-              AASTAARUANDENI.
-            </span>
+          <span data-hero="title-line" className="block">
+            AASTAARUANNETENI.
           </span>
         </h1>
       </div>
 
-      {/* Description */}
-      <div
-        data-hero="description"
-        className="absolute bottom-[19%] left-6 z-10 max-w-[240px] font-inter text-[12px] font-normal leading-[1.5] text-[#5F5C57] sm:bottom-[17%] sm:left-8 sm:max-w-[340px] sm:text-sm md:bottom-[10%] md:left-12 md:max-w-[440px] md:text-[20px] md:leading-[1.4] lg:left-16"
-      >
-        Raamatupidamisteenus, mis hoiab su
-        <br className="hidden sm:block" />
-        <span className="sm:hidden"> </span>
-        ettevõtte maksudel silma peal.
-      </div>
-
-      {/* Location */}
-      <div
-        data-hero="location"
-        className="absolute bottom-[8%] right-6 z-10 flex items-center gap-2 font-inter text-[9px] uppercase tracking-[0.06em] text-[#5F5C57] sm:right-8 sm:gap-3 sm:text-[11px] md:bottom-[10%] md:right-12 md:gap-4 md:text-[13px] md:tracking-[0.1em] lg:right-16"
-      >
-        <span className="h-10 w-px bg-[#B8B3AA] sm:h-14 md:h-16" />
-        <span className="text-center leading-[1.5]">
-          Pärnus
+      {/* Alumine kirjeldus */}
+      <div className="relative z-10 flex items-end justify-between gap-3 px-[5.5%] pb-6 sm:gap-6 sm:pb-[5%]">
+        <p
+          data-hero="description"
+          className="max-w-[300px] font-sans text-xs leading-[1.5] text-[#5f5a54] sm:max-w-[360px] sm:text-base"
+        >
+          Raamatupidamisteenus, mis hoiab su
           <br />
-          &amp;
-          <br />
-          distantsilt üle Eesti
-        </span>
-      </div>
+          ettevõtte maksudel silma peal.
+        </p>
 
-      {/* Bottom left line */}
-      <div
-        data-hero="bottom-line"
-        className="absolute bottom-[5%] left-6 h-px w-24 bg-[#B8B3AA] sm:left-8 sm:w-32 md:bottom-[3%] md:left-12 md:w-40 lg:left-16"
-      />
+        <div
+          data-hero="location"
+          className="flex w-[112px] shrink-0 items-center gap-2 border-l border-[#b9b1a6] pl-2 text-center font-sans text-[8px] leading-[1.7] tracking-[0.08em] text-[#625d56] sm:w-auto sm:gap-3 sm:pl-4 sm:text-[11px] sm:tracking-[0.12em]"
+        >
+          <p className="w-full text-center">
+            PÄRNUS
+            <br />
+            &amp;
+            <br />
+            DISTANTSILT ÜLE EESTI
+          </p>
+        </div>
+      </div>
     </section>
   );
 }

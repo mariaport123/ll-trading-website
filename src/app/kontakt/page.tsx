@@ -38,7 +38,7 @@ export default function KontaktPage() {
 
         <div className="max-w-3xl">
           <h1 className="font-clearface text-[clamp(2.8rem,5vw,4.5rem)] leading-[0.95] tracking-[-0.02em]">
-            VÕTA ÜHENDUST<span className="text-[#D32F2F]">.</span>
+            VÕTA ÜHENDUST.
           </h1>
           <p className="mt-5 max-w-xl font-inter text-xs leading-relaxed text-[#111111]/70 md:text-sm">
             Otsid oma ettevõttele raamatupidajat või soovid teenuste kohta
