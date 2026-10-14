@@ -112,7 +112,7 @@ export default function Contact() {
             </p>
 
             <a
-              href="mailto:irene@lltrading.ee"
+              href="/kontakt"
               className="group mt-8 inline-flex items-center gap-3 border-b border-[#B8B3AA] pb-2 font-inter text-[10px] uppercase tracking-[0.1em] transition-colors duration-300 hover:border-[#D32F2F] hover:text-[#D32F2F]"
             >
               <span>Võta ühendust</span>

@@ -111,25 +111,51 @@ export default function Hero() {
 
       {/* Small horizontal line */}
       <div className="pointer-events-none absolute right-[9%] top-[8%] h-px w-8 bg-[#B8B3AA] sm:w-10 md:right-[10%] md:top-[2%] md:w-[52px]" />
-
+      {/* Soft background halo */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute right-[-8%] top-[-5%] z-0 h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,rgba(211,47,47,0.15)_0%,rgba(211,47,47,0.04)_38%,transparent_70%)] blur-3xl sm:h-[560px] sm:w-[560px] md:right-[0%] md:top-[-10%] md:h-[700px] md:w-[700px]"
+      />
       {/* Large red circle */}
       <div
         data-hero="circle-red"
-        className="hero-red-circle pointer-events-none absolute -right-[100px] top-[5%] z-0 h-[190px] w-[190px] rounded-full border-[1.5px] border-[#D32F2F]/90 sm:-right-[55px] sm:h-[280px] sm:w-[280px] md:right-[5%] md:top-[2%] md:h-[clamp(420px,35vw,540px)] md:w-[clamp(420px,35vw,540px)] md:border-[2.5px]"
+        className="hero-red-circle pointer-events-none absolute -right-[100px] top-[5%] z-0 h-[190px] w-[190px] rounded-full border-[1.5px] border-[#D32F2F]/80 sm:-right-[55px] sm:h-[280px] sm:w-[280px] md:right-[5%] md:top-[2%] md:h-[clamp(360px,30vw,460px)] md:w-[clamp(360px,30vw,460px)] md:border-[1.5px]"
       />
 
       {/* Main headline */}
       <div className="absolute left-1/2 top-[38%] z-10 w-[calc(100%-48px)] min-w-0 -translate-x-1/2 -translate-y-1/2 sm:top-[44%] sm:w-full sm:px-4 md:top-[45%] md:w-full md:px-0">
-        <h1 className="w-full max-w-full break-keep text-center font-clearface text-[clamp(1.8rem,6.2vw,7.5rem)] font-normal leading-[0.98] tracking-[-0.035em] sm:text-[clamp(2.4rem,7vw,7.5rem)] sm:tracking-[-0.015em] sm:leading-[1.02]">
+        <h1 className="w-full max-w-full break-keep text-center font-clearface text-[clamp(1.8rem,6.2vw,7.5rem)] font-normal leading-[0.98] tracking-[-0.035em] sm:text-[clamp(2.4rem,6.2vw,6.8rem)] sm:tracking-[-0.015em] sm:leading-[1.02]">
           <span className="block overflow-hidden pb-[0.06em]">
             <span data-hero="headline-line" className="block">
               ALGDOKUMENTIDEST
             </span>
           </span>
           <span className="block overflow-hidden pb-[0.06em]">
-            <span data-hero="headline-line" className="block">
-              AASTAARUANDENI.
+
+            <span className="block">
+              <span className="block overflow-hidden pb-[0.06em]">
+                <span data-hero="headline-line" className="block">
+                  AASTAARUANDENI.
+                </span>
+              </span>
+
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 500 20"
+                fill="none"
+                preserveAspectRatio="none"
+                className="pointer-events-none mx-auto -mt-1 block h-3 w-[72%] origin-left scale-x-0 text-[#D32F2F] sm:-mt-2 sm:h-4 sm:w-[55%]"
+                data-hero="underline"
+              >
+                <path
+                  d="M3 11 C55 7, 90 5, 145 10 S235 15, 285 9 S380 5, 430 10 S475 11, 497 7"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                />
+              </svg>
             </span>
+
           </span>
         </h1>
       </div>

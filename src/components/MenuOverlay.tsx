@@ -13,13 +13,16 @@ type MenuOverlayProps = {
     onClose: () => void;
 };
 
+
 const menuItems = [
   { number: "01", label: "Meist", href: "/#about" },
   { number: "02", label: "Teenused", href: "/#services" },
   { number: "03", label: "Uudised", href: "/#news" },
-  { number: "04", label: "Hinnakiri", href: "/hinnakiri" },
-  { number: "05", label: "Kontakt", href: "/kontakt" },
+  { number: "04", label: "Meie inimesed", href: "/#team" },
+  { number: "05", label: "Hinnakiri", href: "/hinnakiri" },
+  { number: "06", label: "Kontakt", href: "/kontakt" },
 ];
+
 
 export default function MenuOverlay({
     open,
@@ -187,7 +190,7 @@ export default function MenuOverlay({
                                 ({item.number})
                             </span>
 
-                            <span className="font-clearface text-[clamp(2rem,3.3vw,4rem)] uppercase leading-[0.9] tracking-[-0.02em] transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:text-white">
+                            <span className="font-clearface text-[clamp(1.7rem,2.8vw,3.2rem)] uppercase leading-[0.95] tracking-[-0.02em] transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:text-white">
                                 {item.label}
                             </span>
                         </a>
