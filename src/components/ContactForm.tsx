@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, type FormEvent } from "react";
@@ -20,6 +19,7 @@ export default function ContactForm() {
       company: String(formData.get("company") ?? "").trim(),
       email: String(formData.get("email") ?? "").trim(),
       message: String(formData.get("message") ?? "").trim(),
+      website: String(formData.get("website") ?? "").trim(),
     };
 
     try {
@@ -47,6 +47,21 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-8">
+      {/* Honeypot: päris külastaja jätab selle välja tühjaks. */}
+      <div
+        className="absolute -left-[9999px]"
+        aria-hidden="true"
+      >
+        <label htmlFor="website">Ära täida seda välja</label>
+        <input
+          id="website"
+          name="website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
+
       <div>
         <label
           htmlFor="name"

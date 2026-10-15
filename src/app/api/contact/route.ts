@@ -15,6 +15,12 @@ export async function POST(request: Request) {
         }
 
         const data = body as Record<string, unknown>;
+        const website =
+            typeof data.website === "string" ? data.website.trim() : "";
+
+        if (website) {
+            return Response.json({ success: true });
+        }
 
         const name = typeof data.name === "string" ? data.name.trim() : "";
         const company =
