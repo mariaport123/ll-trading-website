@@ -12,9 +12,13 @@ import ServicesMarquee from "@/components/ServicesMarquee";
 
 export default function Home() {
   return (
+
     <main className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
-      <Navbar />
-      <Hero />
+      <div className="relative isolate">
+        <Navbar />
+        <Hero />
+      </div>
+
       <ServicesMarquee />
       <Experience />
       <Services />
@@ -25,5 +29,6 @@ export default function Home() {
       <Contact />
       <Footer />
     </main>
+
   );
 }

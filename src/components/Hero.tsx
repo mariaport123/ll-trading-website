@@ -94,6 +94,26 @@ export default function Hero() {
       ref={heroRef}
       className="relative h-[620px] min-h-0 overflow-hidden px-6 sm:h-[680px] sm:px-8 md:h-auto md:min-h-[calc(100vh-92px)] md:px-12 lg:px-16"
     >
+      {/* Background photograph extending behind the navbar */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -top-[100px] inset-x-0 bottom-0 z-0"
+        style={{
+          backgroundImage: "url('/images/hero-ledger.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center 62%",
+          opacity: 0.30,
+          mixBlendMode: "multiply",
+        }}
+      />
+      
+
+      {/* One consistent warm ivory overlay */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -top-[100px] inset-x-0 bottom-0 z-[1] bg-[#EEE9E2]/20"
+      />
+
       {/* Starting point */}
       <div
         data-hero="meta"

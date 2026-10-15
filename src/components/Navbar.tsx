@@ -30,7 +30,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="absolute inset-x-0 top-0 z-50 flex h-[76px] w-full items-center justify-between px-6 sm:px-8 md:h-[92px] md:px-12 lg:px-16">
+      <nav className="absolute inset-x-0 top-0 z-50 flex h-[76px] w-full items-center justify-between bg-transparent px-6 sm:px-8 md:h-[92px] md:px-12 lg:px-16">
         {/* Contact link: desktop only */}
         <a
           href="/kontakt"
@@ -60,19 +60,16 @@ export default function Navbar() {
       >
         <span className="flex w-6 flex-col gap-[6px]">
           <span
-            className={`h-px w-full bg-[#111111] transition-transform duration-300 ${
-              menuOpen ? "translate-y-[3.5px] rotate-45" : ""
-            }`}
+            className={`h-px w-full bg-[#111111] transition-transform duration-300 ${menuOpen ? "translate-y-[3.5px] rotate-45" : ""
+              }`}
           />
           <span
-            className={`h-px w-full bg-[#111111] transition-all duration-300 ${
-              menuOpen ? "scale-x-0 opacity-0" : ""
-            }`}
+            className={`h-px w-full bg-[#111111] transition-all duration-300 ${menuOpen ? "scale-x-0 opacity-0" : ""
+              }`}
           />
           <span
-            className={`h-px w-full bg-[#111111] transition-transform duration-300 ${
-              menuOpen ? "-translate-y-[3.5px] -rotate-45" : ""
-            }`}
+            className={`h-px w-full bg-[#111111] transition-transform duration-300 ${menuOpen ? "-translate-y-[3.5px] -rotate-45" : ""
+              }`}
           />
         </span>
       </button>
