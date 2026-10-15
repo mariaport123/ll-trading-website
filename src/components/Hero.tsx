@@ -106,12 +106,21 @@ export default function Hero() {
           mixBlendMode: "multiply",
         }}
       />
-      
 
       {/* One consistent warm ivory overlay */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -top-[100px] inset-x-0 bottom-0 z-[1] bg-[#EEE9E2]/20"
+      />
+
+        {/* Fade photo into the page background */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-12 sm:h-16 md:h-20"
+        style={{
+          background:
+            "linear-gradient(to bottom, transparent 0%, #EEE9E2 100%)",
+        }}
       />
 
       {/* Starting point */}
